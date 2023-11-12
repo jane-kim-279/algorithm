@@ -6,6 +6,7 @@ https://school.programmers.co.kr/learn/courses/30/lessons/67257
 from itertools import permutations
 import re
 
+#후위 표기법으로 교체
 def toPostFix(tokens, priority):
     stack = []
     postfix = []
@@ -26,6 +27,7 @@ def toPostFix(tokens, priority):
         
     return postfix
 
+#후위 표기법 계산식 계산
 def calc(tokens):
     stack = []
     
@@ -49,11 +51,13 @@ def solution(expression):
     tokens = re.split(r'([-=*/()])|\s+', expression)
     operators = ['+', '-', '*']
     answer = 0
-    
+
+    #연산자 우선순위를 순열로 만들고, 이를 for문으로 순회함
     for i in map(list, permutations(operators)):
         #precedence and operator
         priority = {o:p for p, o in enumerate(list(i))}
         postfix = toPostFix(tokens, priority)
+        #최대 절대값이 원하는 결과
         answer = max(answer, abs(calc(postfix)))
     
     return answer
