@@ -8,22 +8,23 @@ import re
 
 #후위 표기법으로 교체
 def toPostFix(tokens, priority):
-    stack = []
-    postfix = []
+    stack = []      #연산자 스택
+    postfix = []    #출력 배열
     
-    for token in tokens:
-        if token.isdigit(): postfix.append(token)
+    for token in tokens:                             #분리된 전체 식을 iterate
+        if token.isdigit(): postfix.append(token)    #숫자는 그대로 출력
         else:
-            if not stack: stack.append(token)
-            else:
-                while stack:
-                    if priority[token] <= priority[stack[-1]]:
-                        postfix.append(stack.pop())
+            if not stack: stack.append(token)        #스택이 비었으면 연산자를 스택에 추가
+            else:        
+                while stack:                         #안 비었다면
+                    if priority[token] <= priority[stack[-1]]: #연산자끼리 우선순위 비교해서
+                        postfix.append(stack.pop()) #낮으면 낮지 않을때까지 기존 스택 비우기(출력)
                     else: break
-                stack.append(token)
+                        
+                stack.append(token)    #마지막에는 자기 자신(연산자) 추가
                 
-    while stack:
-        postfix.append(stack.pop())
+    while stack:                       #연산자가 남으면
+        postfix.append(stack.pop())    #남는 연산자 털기(출력)
         
     return postfix
 
