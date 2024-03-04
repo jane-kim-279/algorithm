@@ -1,6 +1,7 @@
 /*
- * BFS 응용1 - 시작점이 여러 개일때
+ * BFS 응용2 - 시작점이 여러 개일때
  * 백준 - 토마토 https://www.acmicpc.net/problem/7576
+ * BFS를 돌때 큐에 쌓이는 순서는 거리 순일 수 밖에 없다.
  */
 #include <bits/stdc++.h>
 #define FASTIO cin.tie(0); cout.tie(0); ios::sync_with_stdio(0);
